@@ -29,7 +29,6 @@
 
 #include <omp.h>
 
-// ─── Type aliases ─────────────────────────────────────────────────────────────
 
 using u8   = uint8_t;
 using i64  = int64_t;
@@ -211,23 +210,7 @@ BenchResult run_benchmark(int W, int H, int nthreads, int nruns)
 
 // ─── Demo query O(1) ─────────────────────────────────────────────────────────
 
-void demo_queries(int W, int H)
-{
-    auto img = make_image(W, H, 7);
-    auto II  = integral_sequential(img, W, H);
 
-    std::cout << "\n";
-    std::cout << "┌─ Demo query O(1) su immagine " << W << "×" << H << " ────────────────┐\n";
-    auto total = region_sum(II, W, 0, 0, W-1, H-1);
-    std::cout << "│  Somma intera immagine  : " << std::setw(12) << total << "  (4 lookup)  │\n";
-    auto q1 = region_sum(II, W, 0, 0, W/2-1, H/2-1);
-    std::cout << "│  Quadrante alto-sx      : " << std::setw(12) << q1    << "  (4 lookup)  │\n";
-    int cx1=W*45/100, cy1=H*45/100, cx2=W*55/100, cy2=H*55/100;
-    auto centre = region_sum(II, W, cx1, cy1, cx2, cy2);
-    std::cout << "│  Centro 10%×10%         : " << std::setw(12) << centre << "  (4 lookup)  │\n";
-    std::cout << "│  Media pixel (intero)   : " << std::setw(12) << total/(i64(W)*H) << "              │\n";
-    std::cout << "└────────────────────────────────────────────────────────┘\n\n";
-}
 
 // ─── main ─────────────────────────────────────────────────────────────────────
 
