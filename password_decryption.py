@@ -172,7 +172,17 @@ def benchmark(dataset_sizes=DATASET_SIZES, core_counts=CORE_COUNTS,
     return res
 
 # ─── STILE GRAFICI ───────────────────────────────────────────────────
+PALETTE = {1:"#1A3A5C", 2:"#2471A3", 4:"#1ABC9C", 8:"#F39C12", 16:"#C0392B"}
+SEQ_CLR  = "#212121"
+GRID_CLR = "#DDE3EA"
 
+plt.rcParams.update({
+    "font.family":      "DejaVu Sans",
+    "axes.facecolor":   "#FAFBFC",
+    "figure.facecolor": "white",
+    "axes.edgecolor":   "#BBBBBB",
+    "axes.linewidth":   0.8,
+})
 
 
 def _style(ax, title, xlabel, ylabel):
